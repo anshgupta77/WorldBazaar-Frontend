@@ -1,5 +1,6 @@
 
 import './App.css';
+import Carousel from './Components/Carousel';
 import Connect from './Components/Connect';
 import Footer from './Components/Footer';
 import Header from './Components/Header/Header';
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <Navbar />
+      <Carousel />
       <Main />
       <Connect />
       <Footer />
