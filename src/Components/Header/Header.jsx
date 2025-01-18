@@ -21,17 +21,19 @@ import Language from "./Language";
 import AccountList from "./AccountList";
 import ReturnOrder from "./ReturnOrder";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
         <div className="bg-[#232f3e] text-white flex items-center justify-between h-20 w-full gap-2 px-3">
-            <AmazonLogo />
+            <Link to="/"> <AmazonLogo /></Link>
             <Delivery />
             <SearchBar />
             <Language />
             <AccountList />
             <ReturnOrder />
-            <Cart />
+            <Link to="/cart"> <Cart /></Link>
+          
         </div>
     );
 };

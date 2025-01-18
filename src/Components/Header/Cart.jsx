@@ -1,6 +1,7 @@
-import image from "../../assets/card_components/shopping_trends/img1.jpg";
+import { Link } from "react-router-dom";
 const Cart = () => {
     return (
+        <Link to="/cart"> 
         <div className="flex items-center space-x-1">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +14,12 @@ const Cart = () => {
             <p className="text-sm font-bold">Cart</p>
             
         </div>
+        </Link>
     );
 };
 
 export default Cart;
+
+
+
+

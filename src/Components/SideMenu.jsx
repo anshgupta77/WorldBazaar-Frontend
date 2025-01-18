@@ -13,7 +13,7 @@ const SideMenu = ({ isOpen, toggleMenu }) => {
         
         <div className="bg-gray-800 flex items-center text-white px-5 py-4">
         <span className="material-icons mr-1">account_circle</span> 
-          <h2 className="text-lg font-bold">Hello, Abbas Akbar</h2>
+          <h2 className="text-lg font-bold">Hello, Ansh</h2>
         </div>
 
         

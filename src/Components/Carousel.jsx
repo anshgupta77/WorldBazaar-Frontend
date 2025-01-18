@@ -9,7 +9,7 @@ import img1 from "./../assets/Carousal.img1.jpg";
 import img2 from "./../assets/Carousal.img2.jpg";
 import img3 from "./../assets/Carousal.img3.jpg";
 import img4 from "./../assets/Carousal.img4.jpg";
-import img5 from "./../assets/Carousal.img1.jpg";
+import img5 from "./../assets/Carousal.img5.jpg";
 const Carousel = () => {
   const images = [
     img1,
@@ -34,7 +34,7 @@ const Carousel = () => {
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-[50vh] "
+              className="w-full h-[50vh] object-cover object-top "
             />
           </SwiperSlide>
         ))}
