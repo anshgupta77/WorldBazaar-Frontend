@@ -6,7 +6,7 @@ const authSlice = createSlice({
     },
     reducers: {
         setCurrentUser: (state, action) =>{
-            const user = action.payload.username;
+            const user = action.payload;
             console.log("Setting user to: ", user);
             state.currentUser = user;
         },

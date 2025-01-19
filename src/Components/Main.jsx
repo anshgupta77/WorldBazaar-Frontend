@@ -1,6 +1,6 @@
 import React from "react";
 import { card_components_items } from "./Card_components_items";
-
+import { Link } from "react-router-dom";
 const Card = ({ heading, images, hyperlink }) => {
     return (
         <div className="p-4 border border-gray-300 rounded-lg bg-white shadow-md text-left">
@@ -43,12 +43,12 @@ const Card = ({ heading, images, hyperlink }) => {
             </div>
 
             {/* Hyperlink */}
-            <a
+            <Link
                 href="/"
                 className="text-blue-500 text-sm font-medium mt-4 inline-block hover:underline"
             >
                 {hyperlink}
-            </a>
+            </Link>
         </div>
     );
 };

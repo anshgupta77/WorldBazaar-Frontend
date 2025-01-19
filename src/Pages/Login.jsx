@@ -3,11 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 // import AmazonIcon from "./../../assets/amazon_logo.png";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './../Slices/authSlice';
+import axios from 'axios';
 
 const AuthPages = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
   const [isLoginView, setIsLoginView] = useState(true);
+  const [error,setError] = useState(null);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,8 +27,42 @@ const AuthPages = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your authentication logic here
-    dispatch(setCurrentUser({username : formData.email}));
-    navigate('/profile');
+    // dispatch(setCurrentUser({username : formData.email}));
+    setError(null);
+    if(isLoginView){
+      axios
+      .post("http://localhost:4070/login", { email: formData.email, password: formData.password })
+      .then((response) => {
+        
+        const {token, refresh_token} = response?.data;
+        const email = formData.email;
+        dispatch(setCurrentUser({ token, refresh_token,  email}));
+        console.log(response);
+        navigate('/cart');
+      })
+      .catch((err) => {
+        console.log(err);
+        const errorMessage = err.response.data.message || "Something went wrong";
+        setError(errorMessage);
+    });
+    }else{
+      axios
+      .post("http://localhost:4070/register", { username: formData.name, email: formData.email, password: formData.password })
+      .then((response) => {
+        
+        // const {token, refresh_token} = response?.data;
+        const email = formData.email;
+        dispatch(setCurrentUser({email}));
+        console.log(response);
+        navigate('/profile');
+      })
+      .catch((err) => {
+        console.log(err);
+        const errorMessage = err.response.data.message || "Something went wrong";
+        setError(errorMessage);
+    });
+    }
+    
     
   };
 
@@ -50,6 +86,12 @@ const AuthPages = () => {
             <h1 className="text-3xl font-normal mb-4">
               {isLoginView ? 'Sign-In' : 'Create account'}
             </h1>
+
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-sm rounded">
+                {error}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit}>
               {/* Name Field - Only show in Register view */}

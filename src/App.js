@@ -11,9 +11,12 @@ import Product from './Pages/Product';
 import Cart from './Components/Header/Cart';
 import CartPage from './Pages/CartPage';
 import Login from './Pages/Login';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './store';
 import ProfilePage from './Pages/ProfilePage';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { setCartItems } from './Slices/cartSlice';
 function Layout(element){
 return (
   <>
@@ -25,8 +28,27 @@ return (
   </>
 )}
 function App() {
+  const user  = useSelector(state => state.auth.currentUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user && user.token) {
+      console.log(user);
+      axios.get('http://localhost:4000/cart', {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      })
+        .then(response => {
+          const items = response?.data?.cart || [];
+          console.log(items);
+          dispatch(setCartItems(items));
+          console.log('success');
+        })
+        .catch(err => console.error(err));
+    }
+  }, [user]);
   return (
-    <Provider store={store}>
+    
 
     <div className="App">
       <Router>
@@ -38,7 +60,7 @@ function App() {
           </Routes>
       </Router>
     </div>
-    </Provider>
+  
   );
 }
 

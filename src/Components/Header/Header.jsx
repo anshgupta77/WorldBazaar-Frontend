@@ -32,8 +32,7 @@ const Header = () => {
             <Language />
             <AccountList />
             <ReturnOrder />
-            <Link to="/cart"> <Cart /></Link>
-          
+            <Link to="/cart"><Cart /></Link>
         </div>
     );
 };
