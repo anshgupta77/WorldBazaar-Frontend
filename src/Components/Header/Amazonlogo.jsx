@@ -1,12 +1,8 @@
+import amazon_logo from "../../assets/amazon_logo.png"
 const AmazonLogo = () => {
     return ( 
         <div className="flex space-x-1 align-middle">
-            {/* "amazon" part */}
-            <span className="text-5xl font-bold text-white">amazon</span>
-            
-            
-            {/* ".in" part */}
-            <span className="text-xl font-semibold text-white mt-5">.in</span>
+            <img src={amazon_logo} alt="" className="w-auto h-11" />
         </div>
      );
 }

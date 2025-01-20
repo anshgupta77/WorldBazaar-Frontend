@@ -6,9 +6,9 @@ const authSlice = createSlice({
     },
     reducers: {
         setCurrentUser: (state, action) =>{
-            const user = action.payload;
-            console.log("Setting user to: ", user);
-            state.currentUser = user;
+            const { token, refresh_token,  email} = action.payload;
+            console.log("Setting user to: ", email);
+            state.currentUser = { token, refresh_token, email};
         },
         removeCurrentUser: (state) =>{
             state.currentUser = null;

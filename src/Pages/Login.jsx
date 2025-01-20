@@ -26,8 +26,6 @@ const AuthPages = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    // dispatch(setCurrentUser({username : formData.email}));
     setError(null);
     if(isLoginView){
       axios

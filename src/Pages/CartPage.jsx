@@ -13,19 +13,19 @@ function CartPage() {
   const makeDeleteRequest = useDeleteCall();
 
 
-  // const subTotal = useSelector(totalPrice);
+  const subTotal = useSelector(totalPrice);
 
   
 
   const removeFromCart = (id) => {
-      makeDeleteRequest(`http://localhost:4000/cart/delete`, {id: id});
+      makeDeleteRequest(`http://localhost:4000/cart/delete/${id}`);
   };
 
   const handleUpdateQuantity = (id, increament) => {
     makePatchRequest('http://localhost:4000/cart/quantity', {id: id, increament: increament});
   }
   const handleToggleSelect = (id) => {
-    makePatchRequest('http://localhost:4000/cart/toggle', { product_id: id });
+    makePatchRequest('http://localhost:4000/cart/toggle', { id: id });
   }
 
   console.log(cart);
@@ -89,7 +89,7 @@ function CartPage() {
           <div className="w-full lg:w-1/3 bg-gray-100 shadow-md p-4 rounded-lg">
           <div className="flex justify-around">
             <h2 className="text-xl font mb-4">Subtotal</h2>
-            {/* <h2 className="text-xl font-extrabold mb-4 text-black">₹{subTotal}</h2> */}
+            <h2 className="text-xl font-extrabold mb-4 text-black">₹{subTotal}</h2> 
 
           </div>
             <button className="bg-yellow-500 text-black font-bold w-full py-2 rounded mt-4 hover:bg-yellow-600">

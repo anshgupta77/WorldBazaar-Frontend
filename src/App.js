@@ -7,13 +7,14 @@ import Header from './Components/Header/Header';
 import Main from './Components/Main';
 import Navbar from './Components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Product from './Pages/Product';
+import Home from './Pages/HomePage';
 import Cart from './Components/Header/Cart';
 import CartPage from './Pages/CartPage';
 import Login from './Pages/Login';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './store';
 import ProfilePage from './Pages/ProfilePage';
+import ProductPage from './Pages/ProductPage';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setCartItems } from './Slices/cartSlice';
@@ -53,10 +54,11 @@ function App() {
     <div className="App">
       <Router>
           <Routes>
-          <Route path="/" element={Layout(<Product />)}></Route>
+          <Route path="/" element={Layout(<Home />)}></Route>
           <Route path="/cart" element={Layout(<CartPage />)}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
+          <Route path="/product" element={Layout(<ProductPage />)}></Route>
           </Routes>
       </Router>
     </div>

@@ -8,8 +8,8 @@ export function usePatchCall(){
      const makePatchRequest = (url, body) =>{
         axios.patch(url, body, {headers: {Authorization: `Bearer ${token}`}
         }).then(response =>{
+            console.log("from usePatchCall", response);
             const items = response?.data?.cart || [];
-            console.log(items);
             dispatch(setCartItems(items));
             // console.log("Success");
         }).catch(err => console.error(err)
@@ -24,8 +24,15 @@ export function useDeleteCall(){
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.currentUser?.token);
     const makeDeleteRequest = (url, body) =>{
-       axios.delete(url, body, {headers: {Authorization: `Bearer ${token}`}
+       axios.delete(url, {
+            headers: 
+            {
+                Authorization: `Bearer ${token}`,
+                data: body
+            }  
+
        }).then(response =>{
+            console.log("Headers token", token);
            const items = response?.data?.cart || [];
            dispatch(setCartItems(items));
            console.log("Success");
