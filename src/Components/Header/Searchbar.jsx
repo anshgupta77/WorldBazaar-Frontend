@@ -1,7 +1,7 @@
 const SearchBar = () => {
     return (
-        <div className="flex items-center flex-grow bg-white rounded-md">
-            <select className="bg-gray-100 text-sm  text-black py-2 border-r">
+        <div className="flex items-center flex-grow bg-white rounded-md h-11">
+            <select className="bg-gray-100 text-sm  text-black py-2 border-r h-full">
                 <option>All</option>
                 <option>Electronics</option>
                 <option>Books</option>
@@ -12,7 +12,7 @@ const SearchBar = () => {
                 placeholder="Search Amazon.in"
                 className="flex-grow p-2 text-black text-sm outline-none"
             />
-            <button className="bg-yellow-500 px-4 py-2">
+            <button className="bg-yellow-500 px-4 py-2 h-full">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

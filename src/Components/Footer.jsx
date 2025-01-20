@@ -17,9 +17,28 @@ const Footer = () => {
                     <div className="text-left w-1/4 text-sm">Amazon Prime Music <br /> 100 million songs, ad-free. Over 15 million podcast episodes</div>
                 </div>
             </div>
-            <div className="flex justify-center mt-4">
-                {/* Any additional content you want to add here */}
-            </div>
+            <div className="mt-8 text-center">
+            <ul className="flex justify-center text-sm">
+              <li>
+                <a href="#" className="hover:underline">
+                  Conditions of Use & Sale
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Privacy Notice
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Interest-Based Ads
+                </a>
+              </li>
+            </ul>
+            <p className="text-sm">
+              © 1996-2025, Amazon.com, Inc. or its affiliates
+            </p>
+          </div>
         </div>
      );
 }

@@ -53,7 +53,7 @@
 
 const Delivery = () => {
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 border border-transparent p-2 hover:border-gray-400 rounded-md transition-all duration-200">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

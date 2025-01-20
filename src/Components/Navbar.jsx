@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import SideMenu from "./SideMenu";
-import menu from "./../assets/menu-bar.png"
+import menu from "./../assets/menu.png"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
           className="material-icons text-white -mr-5 cursor-pointer"
           onClick={toggleMenu}
         >
-         <img src={menu} className="w-7 h-5"/>
+         <img src={menu} className="w-5 h-6"/>
         </span>
         <span className="cursor-pointer hover:underline">All</span>
         <span className="cursor-pointer hover:underline">Fresh</span>

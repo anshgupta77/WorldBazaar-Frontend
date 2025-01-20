@@ -1,6 +1,6 @@
 const Language = () => {
     return (
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1 border border-transparent p-2 hover:border-gray-400 rounded-md transition-all duration-200">
             <img
                 src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"
                 alt="India"
