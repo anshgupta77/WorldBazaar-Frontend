@@ -18,6 +18,7 @@ import ProductPage from './Pages/ProductPage';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setCartItems } from './Slices/cartSlice';
+import { setProductItems } from './Slices/productSlice';
 function Layout(element){
 return (
   <>
@@ -32,22 +33,30 @@ function App() {
   const user  = useSelector(state => state.auth.currentUser);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (user && user.token) {
-      console.log(user);
-      axios.get('http://localhost:4000/cart', {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      })
-        .then(response => {
-          const items = response?.data?.cart || [];
-          console.log(items);
-          dispatch(setCartItems(items));
-          console.log('success');
-        })
-        .catch(err => console.error(err));
-    }
-  }, [user]);
+    // if (user && user.token) {
+    //   console.log(user);
+    //   axios.get('http://localhost:4000/cart', {
+    //     headers: {
+    //       Authorization: `Bearer ${user.token}`
+    //     }
+    //   })
+    //     .then(response => {
+    //       const items = response?.data?.cart || [];
+    //       console.log(items);
+    //       dispatch(setCartItems(items));
+    //       console.log('success');
+    //     })
+    //     .catch(err => console.error(err));
+    // }
+
+    axios.get("http://localhost:4000/product")
+          .then(response =>{
+            const items = response?.data?.products || [];
+            console.log(items);
+            dispatch(setProductItems(items));
+            console.log("success");
+          }).catch(err => console.log(err.message));
+  },);
   return (
     
 

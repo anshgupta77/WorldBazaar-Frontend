@@ -9,8 +9,8 @@ function CartPage() {
   const cart = useSelector((state) => state.cart.items);
 
   const dispatch = useDispatch();
-  const makePatchRequest = usePatchCall();
-  const makeDeleteRequest = useDeleteCall();
+  // const makePatchRequest = usePatchCall();
+  // const makeDeleteRequest = useDeleteCall();
 
 
   const subTotal = useSelector(totalPrice);
@@ -18,14 +18,17 @@ function CartPage() {
   
 
   const removeFromCart = (id) => {
-      makeDeleteRequest(`http://localhost:4000/cart/delete/${id}`);
+      dispatch(removeItem(id))
+      // makeDeleteRequest(`http://localhost:4000/cart/delete/${id}`);
   };
 
   const handleUpdateQuantity = (id, increament) => {
-    makePatchRequest('http://localhost:4000/cart/quantity', {id: id, increament: increament});
+    dispatch(changeQuantity({id: id, increament: increament}))
+    // makePatchRequest('http://localhost:4000/cart/quantity', {id: id, increament: increament});
   }
   const handleToggleSelect = (id) => {
-    makePatchRequest('http://localhost:4000/cart/toggle', { id: id });
+    dispatch(toggleItem(id))
+    // makePatchRequest('http://localhost:4000/cart/toggle', { id: id });
   }
 
   console.log(cart);
@@ -55,11 +58,26 @@ function CartPage() {
                   className="h-24 w-24 object-cover rounded"
                 />
                 <div className="flex-grow px-4 text-left">
-                  <h2 className="text-lg font-semibold">{product.name}</h2>
+                  <h2 className="text-lg font-semibold">{product.title}</h2>
                   <p className="text-sm text-gray-600">{product.description}</p>
-                  <p className="text-lg font-semibold mt-2">
-                  ₹{product.price}
-                  </p>
+                  <div className="flex items-center mt-2">
+                  <span className="text-yellow-400 text-sm font-bold">
+                    {product.rating.rate}⭐
+                  </span>
+                  <span className="text-gray-600 text-sm ml-2">
+                    ({product.rating.count} reviews)
+                  </span>
+                </div>
+                <div className="mt-2 text-left">
+                  <span className="text-xl font-bold text-gray-800">
+                    ₹{product.price}
+                  </span>
+                  {product.oldPrice && (
+                <span className="text-sm text-red-500 ml-2 line-through">
+                  ₹{product.oldPrice}
+                </span>
+              )}
+              </div>
                 </div>
 
                 <div className="flex items-center gap-2">

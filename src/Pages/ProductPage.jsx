@@ -5,7 +5,7 @@ import ProductNavbar from "../Components/Product/ProductNavbar";
 const ProductPage = () => {
     return ( 
         <div>
-            <CategoryFilter />
+            {/* <CategoryFilter /> */}
             <ProductNavbar />
             <ProductList />
         </div>
