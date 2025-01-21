@@ -3,7 +3,7 @@ import amazonLogo from "../assets/amazon_logo.png";
 const Connect = () => {
     return ( 
         <div>
-            <div className="flex justify-center items-center h-[7vh] bg-slate-700 text-xl text-white font-serif">
+            <div className="flex justify-center items-center h-[7vh] bg-slate-700 text-md text-white font-serif hover:bg-slate-600 cursor-pointer" onClick={()=> window.scrollTo(0,0)}>
                 Back to top
             </div>
             

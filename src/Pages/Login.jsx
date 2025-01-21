@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import AmazonIcon from "./../../assets/amazon_logo.png";
+import AmazonIcon from "../assets/amazon_logo.png";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './../Slices/authSlice';
 import axios from 'axios';
@@ -33,10 +33,13 @@ const AuthPages = () => {
       .then((response) => {
         
         const {token, refresh_token} = response?.data;
+        console.log(token, refresh_token);
+        localStorage.setItem("token", token);
+        localStorage.setItem("refresh-token", refresh_token);
         const email = formData.email;
         dispatch(setCurrentUser({ token, refresh_token,  email}));
         console.log(response);
-        navigate('/cart');
+        navigate('/profile');
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +73,7 @@ const AuthPages = () => {
       <div className="flex space border-b bg-[#121921] border-gray-300 py-3">
         <Link to="/">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+            src={AmazonIcon}
             alt="Amazon"
             className="h-8 mx-auto ml-4"
           />

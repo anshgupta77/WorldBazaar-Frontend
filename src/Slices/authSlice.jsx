@@ -2,16 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        currentUser: null,
+        currentUser: "",
     },
     reducers: {
         setCurrentUser: (state, action) =>{
-            const { token, refresh_token,  email} = action.payload;
-            console.log("Setting user to: ", email);
-            state.currentUser = { token, refresh_token, email};
+            const { username, email} = action.payload;
+            console.log("Setting user to: ", action.payload);
+            state.currentUser = { username, email};
         },
         removeCurrentUser: (state) =>{
-            state.currentUser = null;
+            state.currentUser = "";
             console.log("Removing user", state.currentUser);
         }
     }

@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setCartItems } from './Slices/cartSlice';
 import { setProductItems } from './Slices/productSlice';
+import { setCurrentUser } from './Slices/authSlice';
 function Layout(element){
 return (
   <>
@@ -48,15 +49,40 @@ function App() {
     //     })
     //     .catch(err => console.error(err));
     // }
+    const token = localStorage.getItem("token");
+    // axios.get("http://localhost:4000/product")
+    //       .then(response =>{
+    //         const items = response?.data?.products || [];
+    //         console.log(items);
+    //         dispatch(setProductItems(items));
+    //         console.log("success");
+    //       }).catch(err => console.log(err.message));
 
-    axios.get("http://localhost:4000/product")
-          .then(response =>{
-            const items = response?.data?.products || [];
-            console.log(items);
-            dispatch(setProductItems(items));
-            console.log("success");
-          }).catch(err => console.log(err.message));
-  },);
+
+
+
+    
+    function AuthorizationToken(token){
+    
+      axios.get("http://localhost:4000/user/userinfo",
+      {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    ).then(response =>{
+      const user = response?.data?.user || {};
+      console.log(user);
+      dispatch(setCurrentUser(user));
+      console.log("Fetch the userInfo succesfully");
+    }).catch(err => console.log(err.message));
+    }
+
+    if(token){
+      AuthorizationToken(token);
+    }
+    
+  },[]);
   return (
     
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {productData} from "./../Components/Data/ProductData";
-
+import { selectAllProducts } from "./productSlice";
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
@@ -12,8 +12,9 @@ const cartSlice = createSlice({
             state.items = action.payload;
         },
         addItem: (state, action) => {
-            const item = action.payload;
-            state.items.push({ ...item, selected: true, quantity: 1 });
+            const product = action.payload;
+            state.items.push({ ...product, selected: true, quantity: 1 });
+            
         },
         removeItem: (state, action) => {
             const id = action.payload;

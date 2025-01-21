@@ -16,9 +16,10 @@ const Footer = () => {
                     <div className="text-left w-1/4 text-sm">Prime Now <br /> 2-Hour Delivery on Everyday Items</div>
                     <div className="text-left w-1/4 text-sm">Amazon Prime Music <br /> 100 million songs, ad-free. Over 15 million podcast episodes</div>
                 </div>
+                
             </div>
-            <div className="mt-8 text-center">
-            <ul className="flex justify-center text-sm">
+            <div className="text-center bg-gray-950">
+            <ul className="flex justify-center text-sm gap-6">
               <li>
                 <a href="#" className="hover:underline">
                   Conditions of Use & Sale

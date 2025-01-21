@@ -5,11 +5,12 @@ import { addItem } from "./../../Slices/cartSlice"
 import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  // const items = useSelector((state) => state.cart.items);
-  const [id, setId] = useState(null);
+  const items = useSelector((state) => state.cart.items);
+  const quantity = items.find(item => item.id === product.id)?.quantity || 0;
+
+  
   console.log(product);
-  function addItemToCart(product, id){
-    setId(id);
+  function addItemToCart(product){
     dispatch(addItem(product));
   }
 
@@ -73,7 +74,7 @@ const ProductCard = ({ product }) => {
                 )}
               </button> */}
 
-                {id === product.id ? (
+                {quantity? (
                   <Link to="/cart"><button
                   className="w-full bg-yellow-400 text-white py-2 rounded-md hover:bg-yellow-500">  <span className="text-sm text-white">Go to Cart</span></button></Link>
                   
