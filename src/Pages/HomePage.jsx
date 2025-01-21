@@ -7,10 +7,7 @@ const Home = () => {
                 <div className="relative z-10 -mt-[25vh] bg-transparent">
                 <Main />
             </div>
-            </div>
-
-        
-        
+            </div> 
      );
 }
  

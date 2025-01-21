@@ -23,13 +23,16 @@ export function useRetryCall(method) {
             const token = localStorage.getItem('token');
             return await axios.request(axiosAuthConfig(method, token, url, body));
         } catch (err) {
-            const errorMessage = err?.response?.data?.error;
+            const errorMessage = err?.response?.data?.message;
+            console.log("Error message", err.response.data);
             if (errorMessage !== 'jwt expired') {
                 throw err;
             }
-            const refreshToken = localStorage.getItem('refreshToken');
-            const response = await axios.post('http://localhost:5001/token', { token: refreshToken });
-            const { token: newToken } = response.data;
+            const refreshToken = localStorage.getItem('refresh-token');
+            console.log("Refresh token", refreshToken);
+            const response = await axios.post('http://localhost:4070/token', { token: refreshToken });
+            console.log("from useRetryCall", response.data);
+            const { new_access_token: newToken } = response.data;
             localStorage.setItem('token', newToken);
             return await axios.request(axiosAuthConfig(method, newToken, url, body));
         } finally {
@@ -47,7 +50,6 @@ export function usePatchCall(){
             console.log("from usePatchCall", response);
             const items = response?.data?.cart || [];
             dispatch(setCartItems(items));
-            // console.log("Success");
         }).catch(err => console.error(err)
 
         )

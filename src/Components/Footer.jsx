@@ -3,7 +3,7 @@
 const Footer = () => {
     return ( 
         <div className="bg-gray-950 h-[30vh] text-white">
-            <div className="flex flex-col justify-between px-8 pt-10 mx-auto w-3/5 gap-10">
+            <div className="flex flex-col justify-between px-8 pt-5 mx-auto w-3/5 gap-10">
                 <div className="flex gap-10">
                     <div className="text-left w-1/4 text-sm">AbeBooks <br /> Books, art & collectibles</div>
                     <div className="text-left w-1/4 text-sm">Amazon Web Services <br /> Scalable Cloud Computing Services</div>
@@ -18,7 +18,7 @@ const Footer = () => {
                 </div>
                 
             </div>
-            <div className="text-center bg-gray-950">
+            <div className="text-center bg-gray-950 py-3">
             <ul className="flex justify-center text-sm gap-6">
               <li>
                 <a href="#" className="hover:underline">

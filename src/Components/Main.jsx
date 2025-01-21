@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Card = ({ heading, images, hyperlink }) => {
     return (
         <div className="p-4 border border-gray-300 rounded-lg bg-white shadow-md text-left">
-            {/* Card Heading */}
+          
             <h2 className="text-lg font-medium mb-4">{heading}</h2>
             
-            {/* Images Grid */}
+        
             <div
                 className={`grid ${
                     images.length === 1
@@ -42,7 +42,6 @@ const Card = ({ heading, images, hyperlink }) => {
                 ))}
             </div>
 
-            {/* Hyperlink */}
             <Link
                 href="/"
                 className="text-blue-500 text-sm font-medium mt-4 inline-block hover:underline"

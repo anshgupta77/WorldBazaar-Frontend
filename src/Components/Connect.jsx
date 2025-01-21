@@ -1,4 +1,3 @@
-import amazon from "../assets/amazon_logo.png"
 import amazonLogo from "../assets/amazon_logo.png";
 const Connect = () => {
     return ( 
@@ -50,7 +49,7 @@ const Connect = () => {
                     </div>
                 </div>
             <div className="flex justify-center items-center h-[10vh] bg-slate-800 border-t border-white gap-9">
-                {/* "amazon" part */}
+
                 <span className="text-2xl font-bold text-white"><img src={amazonLogo} alt="" className="w-auto h-11" /></span>
                 <div className="flex space-x-4">
                     <div className="border border-white h-10 w-full rounded-md text-gray-400 pl-2 pr-7 flex items-center">

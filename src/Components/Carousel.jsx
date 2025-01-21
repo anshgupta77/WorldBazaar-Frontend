@@ -24,7 +24,7 @@ const Carousel = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
-        // pagination={{ clickable: true }}
+        
         autoplay={{ delay: 3000 }}
         loop={true}
         className="mySwiper h-[60vh]"
@@ -35,7 +35,7 @@ const Carousel = () => {
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                // className="w-full h-[50vh] object-cover object-top overflow-y-auto"
+                
                 className="w-full h-[70vh] md:h-[80vh] object-cover"
               />
                <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-white"></div>

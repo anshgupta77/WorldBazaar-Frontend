@@ -2,21 +2,17 @@ import { useEffect } from "react";
 import CategoryFilter from "../Components/Product/CategoryFilter";
 import ProductList from "../Components/Product/ProductList";
 import ProductNavbar from "../Components/Product/ProductNavbar";
-import axios from "axios";
+
 import { useDispatch } from "react-redux";
 import { setProductItems } from "../Slices/productSlice";
 import { useNavigate } from "react-router-dom";
-
+import { useRetryCall } from "../hook";
 const ProductPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, productFetch] = useRetryCall("get");
     useEffect(() =>{
-        const token = localStorage.getItem("token");
-        axios.get("http://localhost:4000/product",{
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        })
+        productFetch("http://localhost:4000/product")
         .then(response =>{
           const items = response?.data?.products || [];
           console.log(items);

@@ -3,13 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import AmazonIcon from "../assets/amazon_logo.png";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './../Slices/authSlice';
-import axios from 'axios';
+import {useRetryCall} from './../hook';
+
 
 const AuthPages = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoginView, setIsLoginView] = useState(true);
   const [error,setError] = useState(null);
+  const [loading, userFetch] = useRetryCall("get");
+  const [loading2, loginRegisterInfo] = useRetryCall("post");
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,18 +31,20 @@ const AuthPages = () => {
     e.preventDefault();
     setError(null);
     if(isLoginView){
-      axios
-      .post("http://localhost:4070/login", { email: formData.email, password: formData.password })
-      .then((response) => {
+        loginRegisterInfo("http://localhost:4070/login", { email: formData.email, password: formData.password })
+        .then((response) => {
         
         const {token, refresh_token} = response?.data;
         console.log(token, refresh_token);
         localStorage.setItem("token", token);
         localStorage.setItem("refresh-token", refresh_token);
-        const email = formData.email;
-        dispatch(setCurrentUser({ token, refresh_token,  email}));
-        console.log(response);
-        navigate('/profile');
+        userFetch("http://localhost:4000/user/userinfo")
+        .then(response =>{
+          console.log(response);
+          dispatch(setCurrentUser(response.data.user));
+          navigate('/profile');
+          }).catch(err => console.log(err.message)
+        )
       })
       .catch((err) => {
         console.log(err);
@@ -47,15 +52,14 @@ const AuthPages = () => {
         setError(errorMessage);
     });
     }else{
-      axios
-      .post("http://localhost:4070/register", { username: formData.name, email: formData.email, password: formData.password })
+      loginRegisterInfo("http://localhost:4070/register", { username: formData.name, email: formData.email, password: formData.password })
       .then((response) => {
-        
-        // const {token, refresh_token} = response?.data;
         const email = formData.email;
         dispatch(setCurrentUser({email}));
         console.log(response);
-        navigate('/profile');
+        setIsLoginView((prev) => !prev);
+        navigate('/login');
+
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +73,7 @@ const AuthPages = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* Header */}
+
       <div className="flex space border-b bg-[#121921] border-gray-300 py-3">
         <Link to="/">
           <img
@@ -80,7 +84,7 @@ const AuthPages = () => {
         </Link>
       </div>
 
-      {/* Auth Card */}
+      
       <div className="flex-grow flex justify-center px-4">
         <div className="w-full max-w-[350px] my-4">
           <div className="border border-gray-300 rounded-lg p-6 bg-white">
@@ -95,7 +99,7 @@ const AuthPages = () => {
             )}
 
             <form onSubmit={handleSubmit}>
-              {/* Name Field - Only show in Register view */}
+              
               {!isLoginView && (
                 <div className="mb-4">
                   <label className="block text-sm font-bold mb-1">
@@ -112,7 +116,7 @@ const AuthPages = () => {
                 </div>
               )}
 
-              {/* Email Field */}
+              
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-1">
                   Email
@@ -126,7 +130,7 @@ const AuthPages = () => {
                 />
               </div>
 
-              {/* Password Field */}
+              
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-1">
                   Password
@@ -146,7 +150,7 @@ const AuthPages = () => {
                 )}
               </div>
 
-              {/* Confirm Password Field - Only show in Register view */}
+              
               {!isLoginView && (
                 <div className="mb-4">
                   <label className="block text-sm font-bold mb-1">
@@ -162,7 +166,7 @@ const AuthPages = () => {
                 </div>
               )}
 
-              {/* Submit Button */}
+              
               <button
                 type="submit"
                 className="w-full bg-[#FFD814] hover:bg-[#F7CA00] border border-[#FCD200] rounded-lg py-1 px-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 mt-2"
@@ -171,7 +175,7 @@ const AuthPages = () => {
               </button>
             </form>
 
-            {/* Terms and Conditions */}
+            
             <p className="text-xs text-gray-600 mt-4">
               By continuing, you agree to Amazon's{' '}
               <a href="#" className="text-blue-600 hover:text-orange-700 hover:underline">
@@ -195,7 +199,7 @@ const AuthPages = () => {
             )}
           </div>
 
-          {/* Divider */}
+          
           <div className="relative mt-8 mb-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
@@ -207,7 +211,7 @@ const AuthPages = () => {
             </div>
           </div>
 
-          {/* Toggle Button */}
+          
           <button
             onClick={() => setIsLoginView(!isLoginView)}
             className="w-full bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg py-1 px-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"

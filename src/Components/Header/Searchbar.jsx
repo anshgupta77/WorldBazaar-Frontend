@@ -1,6 +1,6 @@
 const SearchBar = () => {
     return (
-        <div className="flex items-center flex-grow bg-white rounded-md h-11">
+        <div className="flex items-center flex-grow bg-white rounded-md h-10">
             <select className="bg-gray-100 text-sm  text-black py-2 border-r h-full w-[65px]">
                 <option>All</option>
                 <option>Electronics</option>

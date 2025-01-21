@@ -1,56 +1,3 @@
-// import placeholder from "./../../assets/placeholder.png"
-// const Delivery = () => {
-//     return ( 
-//         <div className="">
-//             <div>
-//                 <img src={placeholder} className="w-9 h-9" />
-//             </div>
-//             <div>
-//                 <div>
-//                     Delivering to delhi 110001
-//                 </div>
-//                 <div>
-//                     Update Location
-//                 </div>
-//             </div>
-//         </div>
-//      );
-// }
- 
-// export default Delivery;
-
-// const Delivery = () => {
-//     return (
-//         <div className="flex items-center space-x-2">
-//             {/* Location Icon */}
-//             <div>
-//                 <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     fill="white"
-//                     viewBox="0 0 24 24"
-//                     stroke="white"
-//                     className=""
-//                 >
-//                     <path
-//                         strokeLinecap="round"
-//                         strokeLinejoin="round"
-//                         strokeWidth={2}
-//                         d="M12 11c1.656 0 3-1.344 3-3s-1.344-3-3-3-3 1.344-3 3 1.344 3 3 3zm0 0v10m-7-4a7 7 0 0014 0c0-5-7-10-7-10s-7 5-7 10z"
-//                     />
-//                 </svg>
-//             </div>
-
-//             {/* Delivery Information */}
-//             <div>
-//                 <div className="text-gray-700 font-semibold">Delivering to Delhi 110001</div>
-//                 <div className="text-blue-500 cursor-pointer hover:underline">Update Location</div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Delivery;
-
 const Delivery = () => {
     return (
         <div className="flex items-center space-x-2 border border-transparent p-2 hover:border-gray-400 rounded-md transition-all duration-200">
@@ -64,7 +11,7 @@ const Delivery = () => {
             </svg>
             <div>
                 <p className="text-sm font-medium text-gray-500">Delivering to Delhi 110001</p>
-                <p className="text-xl text-white cursor-pointer text-left">Update location</p>
+                <p className="text-md text-white cursor-pointer text-left">Update location</p>
             </div>
         </div>
     );

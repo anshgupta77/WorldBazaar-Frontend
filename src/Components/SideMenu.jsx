@@ -1,19 +1,20 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 const SideMenu = ({ isOpen, toggleMenu }) => {
+  const {username, email} = useSelector(state => state.auth.currentUser);
   return (
     <>
-      
       <div
         className={`fixed top-0 left-0 h-full w-80 bg-gray-800 text-white transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50 overflow-y-auto`}
       >
         
-        <div className="bg-gray-800 flex items-center text-white px-5 py-4">
+        <div className="bg-gray-800 flex items-center text-white px-5 py-4 gap-4">
         <span className="material-icons mr-1">account_circle</span> 
-          <h2 className="text-lg font-bold">Hello, Ansh</h2>
+          <h2 className="text-lg font-bold">Hello, {username}!</h2>
         </div>
 
         
@@ -105,7 +106,7 @@ const SideMenu = ({ isOpen, toggleMenu }) => {
         </div>
       )}
 
-      {/* Background Overlay */}
+
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-40"
