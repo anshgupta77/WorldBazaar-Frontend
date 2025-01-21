@@ -2,11 +2,14 @@ import Carousel from "../Components/Carousel";
 import Main from "../Components/Main";
 const Home = () => {
     return ( 
-            <div>
+            <div className="relative">
                 <Carousel />
-                
-                <Main /> 
+                <div className="relative z-10 -mt-[25vh] bg-transparent">
+                <Main />
             </div>
+            </div>
+
+        
         
      );
 }

@@ -55,7 +55,7 @@ const Card = ({ heading, images, hyperlink }) => {
 
 const CardLayout = () => {
     return (
-        <div className="grid grid-cols-4 gap-6 p-6 bg-gray-50">
+        <div className="grid grid-cols-4 gap-6 p-4 ">
             {card_components_items.map((item, index) => (
                 <Link to="/product">
                     <Card 

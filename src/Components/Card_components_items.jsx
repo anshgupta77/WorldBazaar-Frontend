@@ -166,4 +166,30 @@ export const card_components_items = [
         ],
         hyperlink: "See all offers"
     },
+    {
+        heading: "Deals based on your shopping trends",
+        images : [
+            {
+                img: "/asset/card_components/shopping_trends/img1.jpg",
+                off: "26% off",
+                deal: "Republic Day Deal"
+            },
+            {
+                img: "/asset/card_components/shopping_trends/img2.jpg",
+                off: "41% off",
+                deal: "Republic Day Deal"
+            },
+            {
+                img: "/asset/card_components/shopping_trends/img3.jpg",
+                off: "41% off",
+                deal: "Republic Day Deal"
+            },
+            {
+                img: "/asset/card_components/shopping_trends/img4.jpg",
+                off: "28% off",
+                deal: "Republic Day Deal"
+            }
+        ],
+        hyperlink: "See all deals"
+    },
 ]

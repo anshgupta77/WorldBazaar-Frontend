@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   // const items = useSelector((state) => state.cart.items);
-  // const [id, setId] = useState(null);
+  const [id, setId] = useState(null);
   console.log(product);
   function addItemToCart(product, id){
-    // setId(id);
+    setId(id);
     dispatch(addItem(product));
   }
 
@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
                 )}
               </button> */}
 
-                {product.addToCart ? (
+                {id === product.id ? (
                   <Link to="/cart"><button
                   className="w-full bg-yellow-400 text-white py-2 rounded-md hover:bg-yellow-500">  <span className="text-sm text-white">Go to Cart</span></button></Link>
                   
