@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
             <div className="mt-3">
                 {quantity? (
                   <Link to="/cart"><button
-                  className="w-full bg-yellow-400 text-white py-2 rounded-md hover:bg-yellow-500">  <span className="text-sm text-white">Go to Cart</span></button></Link>
+                  className="w-full bg-yellow-400 text-white py-2 rounded-md hover:bg-yellow-500">  <span className="text-sm text-black">Go to Cart</span></button></Link>
                   
                   
                 ) : (

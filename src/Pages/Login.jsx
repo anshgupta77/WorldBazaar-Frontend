@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AmazonIcon from "../assets/amazon_logo.png";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './../Slices/authSlice';
@@ -13,6 +13,8 @@ const AuthPages = () => {
   const [error,setError] = useState(null);
   const [loading, userFetch] = useRetryCall("get");
   const [loading2, loginRegisterInfo] = useRetryCall("post");
+  const location = useLocation();
+  const path = location.state?.from || "/profile";
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -34,18 +36,18 @@ const AuthPages = () => {
         loginRegisterInfo("http://localhost:4070/login", { email: formData.email, password: formData.password })
         .then((response) => {
         
-        const {token, refresh_token} = response?.data;
+        const {token, refresh_token, user} = response?.data;
         console.log(token, refresh_token);
         localStorage.setItem("token", token);
         localStorage.setItem("refresh-token", refresh_token);
-        userFetch("http://localhost:4000/user/userinfo")
-        .then(response =>{
-          console.log(response);
-          dispatch(setCurrentUser(response.data.user));
-          navigate('/profile');
+        // userFetch("http://localhost:4000/user/userinfo")
+        dispatch(setCurrentUser(response.data.user));
+        // .then(response =>{
+        //   console.log(response);
+          navigate("/profile");
           }).catch(err => console.log(err.message)
         )
-      })
+      // })
       .catch((err) => {
         console.log(err);
         const errorMessage = err.response.data.message || "Something went wrong";

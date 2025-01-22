@@ -15,6 +15,7 @@ import ProductPage from './Pages/ProductPage';
 import { useEffect } from 'react';
 import { setCurrentUser } from './Slices/authSlice';
 import { useRetryCall } from './hook';
+import Auth from './Auth';
 function Layout(element){
 return (
   <>
@@ -42,10 +43,12 @@ function App() {
       <Router>
           <Routes>
           <Route path="/" element={Layout(<Home />)}></Route>
-          <Route path="/cart" element={Layout(<CartPage />)}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          {/* <Route element = {<Auth />}>  */}
+            <Route path="/product" element={Layout(<ProductPage />)}></Route>
+            <Route path="/cart" element={Layout(<CartPage />)}></Route>
+          {/* </Route> */}
           <Route path="/profile" element={Layout(<ProfilePage />)}></Route>
-          <Route path="/product" element={Layout(<ProductPage />)}></Route>
+          <Route path="/login" element={<Login />}></Route>
           </Routes>
       </Router>
     </div>
