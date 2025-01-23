@@ -1,17 +1,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem } from "./../../Slices/cartSlice"
-;
+import { addItem } from "./../../Slices/cartSlice";
 import { Link } from "react-router-dom";
+
+import { useRetryCall } from "../../hook";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const [loading, makePostRequest] = useRetryCall("post");
   const items = useSelector((state) => state.cart.items);
   const quantity = items.find(item => item.id === product.id)?.quantity || 0;
 
   
   console.log(product);
   function addItemToCart(product){
-    dispatch(addItem(product));
+    makePostRequest("http://localhost:4000/user/cart", product)
+    .then(response =>{
+      console.log(response);
+      dispatch(addItem(product));
+    })
   }
 
 

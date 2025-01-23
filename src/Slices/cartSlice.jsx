@@ -9,6 +9,7 @@ const cartSlice = createSlice({
     },
     reducers: {
         setCartItems: (state, action) => {
+            console.log("At the cartSlice",action.payload);
             state.items = action.payload;
         },
         addItem: (state, action) => {
@@ -23,10 +24,11 @@ const cartSlice = createSlice({
             console.log(state.items);
         },
         changeQuantity: (state, action) => {
-            const { id, increament } = action.payload;
+            const { id, increment } = action.payload;
+            console.log("At the changeQuantity",id, increment);
             const item = state.items.find(ele => ele.id === id);
             if (item) {
-                item.quantity += increament;
+                item.quantity += increment;
                 if (item.quantity === 0) {
                     state.items = state.items.filter(ele => ele.id !== id);
                 }

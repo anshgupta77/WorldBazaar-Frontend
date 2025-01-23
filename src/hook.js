@@ -41,41 +41,46 @@ export function useRetryCall(method) {
     }
     return [loading, call];
 }
-export function usePatchCall(){
-     const dispatch = useDispatch();
-     const token = useSelector(state => state.auth.currentUser?.token);
-     const makePatchRequest = (url, body) =>{
-        axios.patch(url, body, {headers: {Authorization: `Bearer ${token}`}
-        }).then(response =>{
-            console.log("from usePatchCall", response);
-            const items = response?.data?.cart || [];
-            dispatch(setCartItems(items));
-        }).catch(err => console.error(err)
+// export function usePatchCall(){
+//      const dispatch = useDispatch();
+//      const token = useSelector(state => state.auth.currentUser?.token);
+//      const makePatchRequest = (url, body) =>{
+//         axios.patch(url, body, {headers: {Authorization: `Bearer ${token}`}
+//         }).then(response =>{
+//             console.log("from usePatchCall", response);
+//             const items = response?.data?.cart || [];
+//             dispatch(setCartItems(items));
+//         }).catch(err => console.error(err)
 
-        )
-     }
-     return makePatchRequest;
+//         )
+//      }
+//      return makePatchRequest;
 
-}
+// }
 
-export function useDeleteCall(){
-    const dispatch = useDispatch();
-    const token = useSelector(state => state.auth.currentUser?.token);
-    const makeDeleteRequest = (url, body) =>{
-       axios.delete(url, {
-            headers: 
-            {
-                Authorization: `Bearer ${token}`,
-                data: body
-            }  
+// export function useDeleteCall(){
+//     const dispatch = useDispatch();
+//     const token = useSelector(state => state.auth.currentUser?.token);
+//     const makeDeleteRequest = (url, body) =>{
+//        axios.delete(url, {
+//             headers: 
+//             {
+//                 Authorization: `Bearer ${token}`,
+//                 data: body
+//             }  
 
-       }).then(response =>{
-            console.log("Headers token", token);
-           const items = response?.data?.cart || [];
-           dispatch(setCartItems(items));
-           console.log("Success");
-       }).catch(err => console.error(err)
+//        }).then(response =>{
+//             console.log("Headers token", token);
+//            const items = response?.data?.cart || [];
+//            dispatch(setCartItems(items));
+//            console.log("Success");
+//        }).catch(err => console.error(err)
 
-    )}
-    return makeDeleteRequest;
-}
+//     )}
+//     return makeDeleteRequest;
+// }
+
+// export function useAddCall(){
+//     const dispatch = useDispatch();
+//     const token = localStorage.getItem("token");
+// }

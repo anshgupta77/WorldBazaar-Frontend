@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { productData } from "../Components/Data/ProductData"; 
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, changeQuantity, toggleItem, totalPrice } from "../Slices/cartSlice";
-import { usePatchCall, useDeleteCall } from "./../hook";
+import { usePatchCall, useDeleteCall, useRetryCall } from "./../hook";
 function CartPage() {
   // const [cart, setCart] = useState(productData.slice(0, 5)); 
 
   const cart = useSelector((state) => state.cart.items);
 
   const dispatch = useDispatch();
+  const [loading1, makeDeleteRequest] = useRetryCall("delete");
+  const [loading2, makePatchRequest] = useRetryCall("patch");
   // const makePatchRequest = usePatchCall();
   // const makeDeleteRequest = useDeleteCall();
 
@@ -18,17 +20,29 @@ function CartPage() {
   
 
   const removeFromCart = (id) => {
-      dispatch(removeItem(id))
-      // makeDeleteRequest(`http://localhost:4000/cart/delete/${id}`);
+      // dispatch(removeItem(id))
+      makeDeleteRequest(`http://localhost:4000/user/cart/delete/${id}`)
+      .then(response =>{
+        console.log(response);
+        dispatch(removeItem(id));
+      }).catch(err => console.log(err.message));
   };
 
-  const handleUpdateQuantity = (id, increament) => {
-    dispatch(changeQuantity({id: id, increament: increament}))
-    // makePatchRequest('http://localhost:4000/cart/quantity', {id: id, increament: increament});
+  const handleUpdateQuantity = (id, increment) => {
+    // dispatch(changeQuantity({id: id, increament: increament}))
+    makePatchRequest('http://localhost:4000/user/cart/quantity', {id: id, increment: increment})
+    .then(response =>{
+      console.log(response);
+      dispatch(changeQuantity({id: id, increment: increment}));
+    }).catch(err => console.log(err.message));
   }
   const handleToggleSelect = (id) => {
-    dispatch(toggleItem(id))
-    // makePatchRequest('http://localhost:4000/cart/toggle', { id: id });
+    // dispatch(toggleItem(id))
+    makePatchRequest('http://localhost:4000/user/cart/toggle', { id: id })
+    .then(response =>{
+      console.log(response);
+      dispatch(toggleItem(id))
+    }).catch(err => console.log(err.message));
   }
 
   console.log(cart);

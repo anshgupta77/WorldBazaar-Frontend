@@ -14,6 +14,7 @@ import ProfilePage from './Pages/ProfilePage';
 import ProductPage from './Pages/ProductPage';
 import { useEffect } from 'react';
 import { setCurrentUser } from './Slices/authSlice';
+import { setCartItems } from './Slices/cartSlice';
 import { useRetryCall } from './hook';
 import Auth from './Auth';
 function Layout(element){
@@ -32,10 +33,18 @@ function App() {
   const [loading, userFetch] = useRetryCall("get");
   useEffect(() => {
    userFetch("http://localhost:4000/user/userinfo")
+   
    .then(response =>{
     console.log(response);
     dispatch(setCurrentUser(response.data.user));
+    // dispatch(setCartItems(response.data.user));
 
+   }).catch(err => console.log(err.message));
+
+   userFetch("http://localhost:4000/user/cart")
+   .then(response =>{
+    console.log(response);
+    dispatch(setCartItems(response.data.cart));
    }).catch(err => console.log(err.message));
   },[]);
   return (

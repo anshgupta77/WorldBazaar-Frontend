@@ -4,6 +4,7 @@ import AmazonIcon from "../assets/amazon_logo.png";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './../Slices/authSlice';
 import {useRetryCall} from './../hook';
+import { setCartItems } from '../Slices/cartSlice';
 
 
 const AuthPages = () => {
@@ -42,6 +43,7 @@ const AuthPages = () => {
         localStorage.setItem("refresh-token", refresh_token);
         // userFetch("http://localhost:4000/user/userinfo")
         dispatch(setCurrentUser(response.data.user));
+        dispatch(setCartItems(response.data.user.cart));
         // .then(response =>{
         //   console.log(response);
           navigate("/profile");
