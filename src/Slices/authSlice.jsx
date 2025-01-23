@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        currentUser: "",
+        currentUser:{
+            username: "Guest",
+            email: "Sign in to access your saved items and faster checkout"
+        },
     },
     reducers: {
         setCurrentUser: (state, action) =>{

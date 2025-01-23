@@ -20,7 +20,7 @@ const ProfilePage = () => {
             <header className="mb-4 flex justify-between items-center">
                 <div>
                   <h1 className="text-2xl font-bold">Welcome, {username}!</h1>
-                  <p className="text-gray-600">Email: {email}</p>
+                  <p className="text-gray-600">{email}</p>
 
                 </div>
                 <button
