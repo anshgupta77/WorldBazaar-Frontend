@@ -4,7 +4,6 @@ import { selectAllProducts } from "./productSlice";
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        // items: productData.slice(0, 4).map(ele => ({ ...ele, quantity: 1, selected: true })),
         items: [],
     },
     reducers: {
